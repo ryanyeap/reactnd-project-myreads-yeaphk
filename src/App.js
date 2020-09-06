@@ -1,7 +1,6 @@
 import React from 'react';
 import * as BooksAPI from './BooksAPI';
 import { Switch, Route } from 'react-router-dom';
-// import { BrowserRouter as Router } from 'react-router-dom';
 import Home from './views/Home';
 import Search from './views/Search';
 import './App.css';
@@ -30,17 +29,6 @@ class BooksApp extends React.Component {
   }
 
   changeShelf = (changedBook, shelf) => {
-    // BooksAPI.update(changedBook, shelf)
-    //   .then(response => {
-    //     // Setting the shelf for the updated book
-    //     changedBook.shelf = shelf;
-    //     // Updating state with the changed book
-    //     this.setState(prevState => ({
-    //       books: prevState.books
-    //         .filter(book => book.id !== changedBook.id) // Creating new array without old book
-    //           .concat(changedBook) // Adding updated book into the array
-    //     }));
-    //   });
     BooksAPI.update(changedBook, shelf);
     changedBook.shelf = shelf;
     const newBookArray = this.state.books.filter(book => book.id !== changedBook.id)
@@ -48,10 +36,6 @@ class BooksApp extends React.Component {
 
     this.setState({books: newBookArray});
   };
-
-  // changeShowSearchPage = isShowSearch => {
-  //   this.setState({showSearchPage: isShowSearch});
-  // } 
 
   render() {
     const { books, loading } = this.state;
