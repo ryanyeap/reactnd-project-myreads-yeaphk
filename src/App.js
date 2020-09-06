@@ -29,6 +29,30 @@ class BooksApp extends React.Component {
       });
   }
 
+  changeShelf = (changedBook, shelf) => {
+    // BooksAPI.update(changedBook, shelf)
+    //   .then(response => {
+    //     // Setting the shelf for the updated book
+    //     changedBook.shelf = shelf;
+    //     // Updating state with the changed book
+    //     this.setState(prevState => ({
+    //       books: prevState.books
+    //         .filter(book => book.id !== changedBook.id) // Creating new array without old book
+    //           .concat(changedBook) // Adding updated book into the array
+    //     }));
+    //   });
+    BooksAPI.update(changedBook, shelf);
+    changedBook.shelf = shelf;
+    const newBookArray = this.state.books.filter(book => book.id !== changedBook.id)
+      .concat(changedBook);
+
+    this.setState({books: newBookArray});
+  };
+
+  // changeShowSearchPage = isShowSearch => {
+  //   this.setState({showSearchPage: isShowSearch});
+  // } 
+
   render() {
     const { books, loading } = this.state;
 
@@ -36,17 +60,14 @@ class BooksApp extends React.Component {
       <div className="app">
         {!loading && (
           <Switch>
-            {/* <Route exact path={"/"} component={Home} books={books} /> */}
             <Route exact path={"/"}>
-              <Home books={books} />
+              <Home books={books} changeShelf={this.changeShelf} />
             </Route>
-            {/* <Route exact path={"/search"} component={Search} /> */}
             <Route exact path={"/search"}>
-              <Search books={books} />
+              <Search books={books} changeShelf={this.changeShelf} />
             </Route>
           </Switch>
         )}
-        
       </div>
     );
   }

@@ -1,25 +1,30 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import BookShelf from '../components/BookShelf';
 
 const Home = props => {
 
-    const { books } = props;
-    console.log("Books@Home", books);
+    const { books, changeShelf } = props;
+
+    // const handleShowSearchPage = () => {
+    //     changeShowSearchPage(true);
+    // }
+
     return (
         <div className="list-books">
             <div className="list-books-title">
             <h1>MyReads</h1>
             </div>
             <div className="list-books-content">
-            <div>
-                <BookShelf title='Want to Read' type='wantToRead' books={books} />
-                <BookShelf title='Currently Reading' type='currentlyReading' books={books} />
-                <BookShelf title='Read' type='read' books={books} />
-            </div>
+                <div>
+                    <BookShelf title='Want to Read' type='wantToRead' books={books} changeShelf={changeShelf} />
+                    <BookShelf title='Currently Reading' type='currentlyReading' books={books} changeShelf={changeShelf} />
+                    <BookShelf title='Read' type='read' books={books} changeShelf={changeShelf} />
+                </div>
             </div>
             <div className="open-search">
-            <button onClick={() => this.setState({ showSearchPage: true })}>Add a book</button>
+                <Link to="/search">Search</Link>
             </div>
     </div>
     );

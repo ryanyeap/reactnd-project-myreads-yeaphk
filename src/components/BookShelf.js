@@ -3,8 +3,7 @@ import Book from './Book';
 
 class BookShelf extends Component {
     render() {
-        const { title, type, books } = this.props;
-        console.log("BooksShelf", books);
+        const { title, type, books, changeShelf } = this.props;
         const booksArray = books.filter(book => book.shelf === type);
         return (
             <div className="bookshelf">
@@ -12,7 +11,12 @@ class BookShelf extends Component {
                 <div className="bookshelf-books">
                     <ol className="books-grid">
                         {booksArray.map(book => (
-                            <Book book={book} />
+                            <Book
+                                book={book}
+                                books={books}
+                                changeShelf={changeShelf}
+                                key={book.id}
+                            />
                         ))}
                     </ol>
                 </div>
