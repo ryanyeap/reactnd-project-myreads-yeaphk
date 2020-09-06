@@ -58,8 +58,8 @@ class Search extends Component {
                                     <Book
                                         book={book}
                                         books={this.props.books}
-                                        key={book.id}
                                         changeShelf={this.props.changeShelf}
+                                        key={book.id}
                                     />
                                 ))}
                             </ol>

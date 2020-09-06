@@ -7,13 +7,13 @@ class Book extends Component {
     }
 
     render() {
-        const { book, key } = this.props;
+        const { book } = this.props;
         let coverBook = '';
         if (book.imageLinks !== undefined) {
             coverBook = `url(${book.imageLinks.smallThumbnail})`;
         }
         return (
-            <li key={key}>
+            <li key={book.id}>
                 <div className="book">
                     <div className="book-top">
                         <div className="book-cover" 
